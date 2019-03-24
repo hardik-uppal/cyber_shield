@@ -19,7 +19,17 @@
 </head>
 
 <body id="page-top">
+<script>
 
+    function ExtractURL() {
+        var window_url = window.location.href;
+        var access_token = window_url.match(/\#(?:access_token)?(.*)/);
+        if (access_token != null) {
+            access_token = access_token.toString().split("=")[1];
+        }
+        return access_token;
+    }
+</script>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
@@ -30,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="">Login Here</a>
+                    <a class="nav-link js-scroll-trigger" href="https://api.instagram.com/oauth/authorize/?client_id=5d4680b611e94633ab68135234bc36ec&redirect_uri=http://127.0.0.1:5000/index&response_type=token">Login Here</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#about">Team</a>
