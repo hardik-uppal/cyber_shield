@@ -2,7 +2,7 @@
 
 from app import app
 from flask import render_template
-import datetime
+
 
 from TableScript import ExecuteReader
 
@@ -47,7 +47,6 @@ def index():
     tone=[]
     nlc=[]
     user_table=[]
-    stringTable='<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"><thead><tr><th>Comment</th><th>User Name</th><th>Category</th><th>Tone</th></tr></thead><tbody>'
     dt_table1=ExecuteReader("select comment_text,username,NlcLabel,ToneLabel from (select * from Comments where NlcLabel!='neutral' union select * from Comments where NlcLabel='neutral' and ToneLabel in ('Anger'))")
     length_comment_table=len(dt_table1)
     for i in range(len(dt_table1)):
@@ -57,10 +56,7 @@ def index():
         tone.append(dt_table1[i][2])
         nlc.append(dt_table1[i][3])
 
-        strRW = "<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>".format(dt_table1[i][0],dt_table1[i][1],dt_table1[i][2],dt_table1[i][3])
-        stringTable=stringTable+strRW
-        
-    stringTable=stringTable+"</tbody></table>"
+
     ##graph 
     
     count_explicit_graph=[]
@@ -71,4 +67,4 @@ def index():
         count_explicit_graph.append(dt_graph[i][0])
         
     
-    return render_template('index.html',users=users_chart1,stringTable=stringTable,commentTable=commentTable,length_comment_table=length_comment_table ,comment_count=comment_count_chart1,categories=nlcLabel,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])
+    return render_template('index.html',users=users_chart1,commentTable=commentTable,length_comment_table=length_comment_table ,comment_count=comment_count_chart1,categories=nlcLabel,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])
