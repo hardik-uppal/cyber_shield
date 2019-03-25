@@ -49,6 +49,7 @@ def index():
     stringTable='<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"><thead><tr><th>Comment</th><th>User Name</th><th>Category</th><th>Tone</th></tr></thead><tbody>'
     dt_table1=ExecuteReader("select comment_text,username,NlcLabel,ToneLabel from (select * from Comments where NlcLabel!='neutral' union select * from Comments where NlcLabel='neutral' and ToneLabel in ('Anger'))")
     for i in range(len(dt_table1)):
+        
         comment_text.append(dt_table1[i][0])
         user_table.append(dt_table1[i][1])
         tone.append(dt_table1[i][2])
@@ -68,4 +69,4 @@ def index():
         count_explicit_graph.append(dt_graph[i][0])
         
     
-    return render_template('index.html',users=users_chart1,stringTable=stringTable, comment_count=comment_count_chart1,categories=nlcLabel,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])
+    return render_template('index.html',users=users_chart1,stringTable=stringTable,commentTable=dt_table1, comment_count=comment_count_chart1,categories=nlcLabel,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])
