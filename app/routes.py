@@ -2,6 +2,7 @@
 
 from app import app
 from flask import render_template
+import datetime
 
 from TableScript import ExecuteReader
 
@@ -36,4 +37,24 @@ def index():
     total_comments=ExecuteReader("select count(distinct comments_id) from Comments")
     
     
-    return render_template('index.html',users=users_chart1, comment_count=comment_count_chart1,categories=nlcLabel_chart2,cat_comment_count=comment_count_chart2)
+    ##Comment table
+    comment_text=[]
+    tone=[]
+    nlc=[]
+    dt_table1=ExecuteReader("select comment_text,NlcLabel,ToneLabel from (select * from Comments where NlcLabel!='neutral' union select * from Comments where NlcLabel='neutral' and ToneLabel in ('Anger'))")
+    for i in range(len(dt_table1)):
+        comment_text.append(dt_table1[i][0])
+        tone.append(dt_table1[i][1])
+        nlc.append(dt_table1[i][2])
+     
+    ##graph 
+    
+    count_explicit_graph=[]
+    date_graph=[]
+    dt_graph=ExecuteReader("select count(*) as count,DATE(created_time, 'unixepoch') AS date from (select * from Comments where NlcLabel!='neutral' union select * from Comments where NlcLabel='neutral' and ToneLabel in ('Anger')) group by date")
+    for i in range(len(dt_graph)):
+        date_graph.append(dt_graph[i][1])
+        count_explicit_graph.append(dt_graph[i][0])
+        
+    
+    return render_template('index.html',users=users_chart1, comment_count=comment_count_chart1,categories=nlcLabel_chart2,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])

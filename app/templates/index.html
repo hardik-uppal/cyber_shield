@@ -227,8 +227,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Comments</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Posts</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{count_media_id}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comment fa-2x text-gray-300"></i>
@@ -245,7 +245,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Explicit Comments</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">5,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{explicit_comments}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-question-circle fa-2x text-gray-300"></i>
@@ -523,7 +523,9 @@
                         var myLineChart = new Chart(ctx, {
                           type: 'line',
                           data: {
-                            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                            labels: [{% for item in date_graph %}
+                          "{{ item }}",
+                        {% endfor %}],
                             datasets: [{
                               label: "Earnings",
                               lineTension: 0.3,
@@ -537,7 +539,9 @@
                               pointHoverBorderColor: "rgba(78, 115, 223, 1)",
                               pointHitRadius: 10,
                               pointBorderWidth: 2,
-                              data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+                              data: [{% for item in count_explicit_graph %}
+                              "{{ item }}",
+                              {% endfor %}],
                             }],
                           },
                           options: {
