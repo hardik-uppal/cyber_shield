@@ -450,9 +450,6 @@
                         <th>Tone</th>
                       </tr>
                       </thead>
-                      <tbody>
-                        {{stringTable}}
-                      </tbody>
                     </table>
                   </div>
                 </div>
@@ -704,6 +701,21 @@
   <!-- Page level custom scripts -->
   <script type = "text/javascript"
           src="{{ url_for('static', filename = 'js/demo/datatables-demo.js') }}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var len={{length_comment_table}}
+      // var cTable= [{% for item in commentTable %}
+      // {{ item }},
+      // {% endfor %}]
+      var data = [];
+      for ( var i=0 ; i<len ; i++ ) {
+        data.push({{commentTable[i]}});
+      }
+      $('#dataTable').DataTable({
+        data:          data
+      });
+    });
+  </script>
 </body>
 
 </html>
