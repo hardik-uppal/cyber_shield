@@ -32,9 +32,8 @@ def index():
 #        comment_count_chart2.append(dt_chart2[i][0])
 #        nlcLabel_chart2.append(dt_chart2[i][1])  
         for j in range(len(nlcLabel)):
-            if nlcLabel[j]==dt_chart2[i][1]:
+            if nlcLabel[j].lower()==dt_chart2[i][1]:
                 comment_count_chart2[j]=dt_chart2[i][0]
-            
 
     #titlecount
     count_media_id=ExecuteReader("select count(distinct media_id) from Comments")
