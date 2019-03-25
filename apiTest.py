@@ -28,11 +28,14 @@ def apiToneTest(comment_text):
     iam_apikey='MODwXhl7pCy1NQonErss_VNVgUmXELmQmKKV02HhxW1u',
     url='https://gateway.watsonplatform.net/tone-analyzer/api')
 
-    comment_text = "Yo bitch Ja Rule is more succesful then you'll ever be whats up with you and hating you sad mofuckas...i should bitch slap ur pethedic white faces and get you to kiss my ass you guys sicken me. Ja rule is about pride in da music man. dont diss that shit on him. and nothin is wrong bein like tupac he was a brother too...fuckin white boys get things right next time."
+#    comment_text = "Yo bitch Ja Rule is more succesful then you'll ever be whats up with you and hating you sad mofuckas...i should bitch slap ur pethedic white faces and get you to kiss my ass you guys sicken me. Ja rule is about pride in da music man. dont diss that shit on him. and nothin is wrong bein like tupac he was a brother too...fuckin white boys get things right next time."
 
     tone_analysis = tone_analyzer.tone(
         {'text': comment_text},
         'application/json'
     ).get_result()
 #    print(tone_analysis)
-    return(tone_analysis["document_tone"]["tones"][0]["score"],tone_analysis["document_tone"]["tones"][0]["tone_name"])
+    if(len(tone_analysis["document_tone"]["tones"])==0) :
+        return ["","No Tone"]
+    else:
+        return(tone_analysis["document_tone"]["tones"][0]["score"],tone_analysis["document_tone"]["tones"][0]["tone_name"])
