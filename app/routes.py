@@ -43,6 +43,7 @@ def index():
     
     ##Comment table
     comment_text=[]
+    commentTable=[]
     tone=[]
     nlc=[]
     user_table=[]
@@ -50,7 +51,7 @@ def index():
     dt_table1=ExecuteReader("select comment_text,username,NlcLabel,ToneLabel from (select * from Comments where NlcLabel!='neutral' union select * from Comments where NlcLabel='neutral' and ToneLabel in ('Anger'))")
     length_comment_table=len(dt_table1)
     for i in range(len(dt_table1)):
-        
+        commentTable.append([dt_table1[i][0],dt_table1[i][1],dt_table1[i][2],dt_table1[i][3]])
         comment_text.append(dt_table1[i][0])
         user_table.append(dt_table1[i][1])
         tone.append(dt_table1[i][2])
@@ -70,4 +71,4 @@ def index():
         count_explicit_graph.append(dt_graph[i][0])
         
     
-    return render_template('index.html',users=users_chart1,stringTable=stringTable,commentTable=dt_table1,length_comment_table=length_comment_table ,comment_count=comment_count_chart1,categories=nlcLabel,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])
+    return render_template('index.html',users=users_chart1,stringTable=stringTable,commentTable=commentTable,length_comment_table=length_comment_table ,comment_count=comment_count_chart1,categories=nlcLabel,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])
