@@ -20,6 +20,8 @@
   <!-- Page level plugins -->
   <script type = "text/javascript"
           src = "{{ url_for('static', filename = 'vendor/chart.js/Chart.min.js') }}"></script>
+  <!-- Custom styles for this page -->
+  <link href="static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <script>
   // Set new default font family and font color to mimic Bootstrap's default styling
   Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -180,7 +182,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Shubham Barnwal</span>
-                <img class="img-profile rounded-circle" >
+                <img class="img-profile rounded-circle" src="../static/image/user.png">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -261,7 +263,7 @@
           <div class="row col-xl-12">
 
             <!-- Area Chart -->
-            <div class="col-xl-4 col-lg-7">
+            <div class="col-xl-8 col-lg-7">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -269,9 +271,6 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <!--<div class="chart-area">-->
-                    <!--<canvas id="myAreaChart"></canvas>-->
-                  <!--</div>-->
                   <div class="chart-bar">
                     <canvas id="myBarChart1"></canvas>
                     <script>
@@ -433,8 +432,9 @@
                 </div>
               </div>
             </div>
-
-            <div class="col-xl-4 col-lg-5">
+          </div>
+            <div class="row col-xl-12">
+            <div class="col-xl-12 col-lg-5">
               <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Comment List</h6>
@@ -445,61 +445,13 @@
                       <thead>
                       <tr>
                         <th>Comment</th>
+                        <th>User Name</th>
                         <th>Category</th>
                         <th>Tone</th>
                       </tr>
                       </thead>
                       <tbody>
-                      <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                      </tr>
-                      <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                      </tr>
-                      <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                      </tr>
-                      <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                      </tr>
-                      <tr>
-                        <td>Airi Satou</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                      </tr>
-                      <tr>
-                        <td>Brielle Williamson</td>
-                        <td>Integration Specialist</td>
-                        <td>New York</td>
-                      </tr>
-                      <tr>
-                        <td>Herrod Chandler</td>
-                        <td>Sales Assistant</td>
-                        <td>San Francisco</td>
-                      </tr>
-                      <tr>
-                        <td>Rhona Davidson</td>
-                        <td>Integration Specialist</td>
-                        <td>Tokyo</td>
-                      </tr>
-                      <tr>
-                        <td>Colleen Hurst</td>
-                        <td>Javascript Developer</td>
-                        <td>San Francisco</td>
-                      </tr>
-                      <tr>
-                        <td>Sonya Frost</td>
-                        <td>Software Engineer</td>
-                        <td>Edinburgh</td>
-                      </tr>
+                        {{stringTable}}
                       </tbody>
                     </table>
                   </div>
@@ -513,7 +465,7 @@
               <div class="col-xl-12 col-lg-7">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Trend</h6>
                   </div>
                   <div class="card-body">
                     <div class="chart-area">
@@ -744,6 +696,14 @@
           src = "{{ url_for('static', filename = 'js/demo/chart-pie-demo.js') }}"></script>
     <script type = "text/javascript"
             src = "{{ url_for('static', filename = 'js/demo/chart-bar-demo.js') }}"></script>
+
+  <script type = "text/javascript"
+          src="{{ url_for('static', filename = 'vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script type = "text/javascript"
+          src="{{ url_for('static', filename = 'vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+  <!-- Page level custom scripts -->
+  <script type = "text/javascript"
+          src="{{ url_for('static', filename = 'js/demo/datatables-demo.js') }}"></script>
 </body>
 
 </html>
