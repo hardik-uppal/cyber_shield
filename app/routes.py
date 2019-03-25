@@ -46,7 +46,7 @@ def index():
     tone=[]
     nlc=[]
     user_table=[]
-    stringTable=''
+    stringTable='<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"><thead><tr><th>Comment</th><th>User Name</th><th>Category</th><th>Tone</th></tr></thead><tbody>'
     dt_table1=ExecuteReader("select comment_text,username,NlcLabel,ToneLabel from (select * from Comments where NlcLabel!='neutral' union select * from Comments where NlcLabel='neutral' and ToneLabel in ('Anger'))")
     for i in range(len(dt_table1)):
         comment_text.append(dt_table1[i][0])
@@ -56,6 +56,8 @@ def index():
 
         strRW = "<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>".format(dt_table1[i][0],dt_table1[i][1],dt_table1[i][2],dt_table1[i][3])
         stringTable=stringTable+strRW
+        
+    stringTable=stringTable+"</tbody></table>"
     ##graph 
     
     count_explicit_graph=[]
