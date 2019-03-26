@@ -56,26 +56,7 @@
 </head>
 
 <body id="page-top">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script>
-  function ExtractURL() {
-    var window_url = window.location.href;
-    var access_token = window_url.match(/\#(?:access_token)?(.*)/);
-    if (access_token != null) {
-      access_token = access_token.toString().split("=")[1];
-    }
-    $.ajax({
-      url: '/accessToken',
-      type: 'POST',
-      data: access_token,
-      success: function(){
-        console.log("access token sent")
-      }
-    });
-    return access_token;
-  };
-  ExtractURL();
-</script>
+
 
   <!-- Page Wrapper -->
   <div id="wrapper">

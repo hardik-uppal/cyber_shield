@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from app import app
-from flask import render_template
+from flask import render_template,session,redirect,url_for
 from flask import request
-import sqlite3
+#import sqlite3
 from TableScript import ExecuteReader
-import requests as rq
-
+#import requests as rq
+from GetCall import GetCall
 @app.route('/')
 @app.route('/login')
 def login():
@@ -14,7 +14,7 @@ def login():
 
 @app.route('/index', methods=['GET','POST'])
 def index():
-    
+#    GetCall()
 #    accessToken=ExtractToken()
 #    endpointLink= "https://api.instagram.com/v1/users/self/media/recent?access_token={}".format(accessToken)
 #    r = rq.get(endpointLink)
@@ -87,7 +87,10 @@ def index():
 @app.route('/accessToken', methods=['GET','POST'])
 def ExtractToken():
     if request.method == "POST":
-          accessToken=request.get_data()
-          
-    return accessToken
+        if request.form['token'] is not None:
+            session['accessToken']=request.form['token']
+            logfile=open('Log.txt','a')
+            logfile.write(session['accessToken'])
+            logfile.close()
+    return render_template('accessToken.html')
 
