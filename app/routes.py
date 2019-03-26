@@ -2,18 +2,33 @@
 
 from app import app
 from flask import render_template
-
-
+from flask import request
+import sqlite3
 from TableScript import ExecuteReader
-
+import requests as rq
 
 @app.route('/')
 @app.route('/login')
 def login():
     return render_template('login.html')
 
-@app.route('/index')
+@app.route('/index', methods=['GET','POST'])
 def index():
+    
+#    accessToken=ExtractToken()
+#    endpointLink= "https://api.instagram.com/v1/users/self/media/recent?access_token={}".format(accessToken)
+#    r = rq.get(endpointLink)
+#    r = r.json()
+#    user = r["data"][0]["user"]["full_name"]
+#          
+#    conn = sqlite3.connect('cyberShield.db')
+#    c = conn.cursor()
+#        
+#    c.execute('INSERT INTO user VALUES (?,?)', user,accessToken)
+#        
+#    conn.commit()
+#    conn.close()
+          
     #chart1
     comment_count_chart1=[]
     users_chart1=[]
@@ -68,3 +83,11 @@ def index():
         
     
     return render_template('index.html',users=users_chart1,commentTable=commentTable,length_comment_table=length_comment_table ,comment_count=comment_count_chart1,categories=nlcLabel,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])
+
+@app.route('/accessToken', methods=['GET','POST'])
+def ExtractToken():
+    if request.method == "POST":
+          accessToken=request.get_data()
+          
+    return accessToken
+
