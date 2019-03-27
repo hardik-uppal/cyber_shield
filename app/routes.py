@@ -91,12 +91,17 @@ def index():
 def ExtractToken():
     if request.method == "POST":
         if request.form['token'] is not None:
-            session['accessToken']=request.form['token']
+            accessToken=request.form['token']
             logfile=open('Log.txt','a')
-            logfile.write(session['accessToken'])
+            logfile.write(accessToken)
             logfile.close()
+            while accessToken is None:
+                logfile=open('Log.txt','a')
+                logfile.write('waiting for access token')
+                logfile.close()
+            GetCall(accessToken)
             scheduler = BackgroundScheduler()
-            scheduler.add_job(lambda: GetCall(session['accessToken']), trigger="interval", seconds=60)
+            scheduler.add_job(lambda: GetCall(accessToken), trigger="interval", seconds=300)
             scheduler.start()
 #            GetCall(session['accessToken'])
     return render_template('accessToken.html')

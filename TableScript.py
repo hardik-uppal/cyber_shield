@@ -43,6 +43,14 @@ def getRecentDate():
     
     time=c.execute("SELECT created_time FROM Comments ORDER BY created_time DESC LIMIT 1").fetchone()
     return(time)
+    
+def checkComment(comments_id):
+    conn = sqlite3.connect('cyberShield.db')
+    c = conn.cursor()
+    
+    flag=c.execute("SELECT 1 FROM Comments where comments_id={}".format(comments_id)).fetchone()
+    return(flag) 
+    
 
 def ExecuteReader(sql):
     conn = sqlite3.connect('cyberShield.db')
