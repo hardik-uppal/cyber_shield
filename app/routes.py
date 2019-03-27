@@ -101,7 +101,7 @@ def ExtractToken():
                 logfile.close()
             GetCall(accessToken)
             scheduler = BackgroundScheduler()
-            scheduler.add_job(lambda: GetCall(accessToken), trigger="interval", seconds=100)
+            scheduler.add_job(lambda: GetCall(accessToken), trigger="interval", seconds=30)
             scheduler.start()
 #            GetCall(session['accessToken'])
     return render_template('accessToken.html')
