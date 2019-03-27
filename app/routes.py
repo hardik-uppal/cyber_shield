@@ -6,7 +6,7 @@ from flask import request
 #import sqlite3
 from TableScript import ExecuteReader
 #import requests as rq
-from GetCall import GetCall
+#from GetCall import GetCall
 @app.route('/')
 @app.route('/login')
 def login():
