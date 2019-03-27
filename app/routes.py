@@ -3,10 +3,13 @@
 from app import app
 from flask import render_template,session,redirect,url_for
 from flask import request
+from apscheduler.schedulers.background import BackgroundScheduler
 #import sqlite3
 from TableScript import ExecuteReader
 #import requests as rq
-#from GetCall import GetCall
+from GetCall import GetCall
+
+
 @app.route('/')
 @app.route('/login')
 def login():
@@ -92,5 +95,16 @@ def ExtractToken():
             logfile=open('Log.txt','a')
             logfile.write(session['accessToken'])
             logfile.close()
+            scheduler = BackgroundScheduler()
+            scheduler.add_job(func=GetCall, trigger="interval", seconds=60)
+            scheduler.start()
+#            GetCall(session['accessToken'])
     return render_template('accessToken.html')
 
+@app.route('/contactUs')
+def contactUs():
+    return render_template('contactUs.html')
+
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')

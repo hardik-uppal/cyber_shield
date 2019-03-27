@@ -4,8 +4,8 @@ from apiTest import apiNLCTest
 from apiTest import apiToneTest
 from flask import session
 
-def GetCall():
-    accessToken=session['accessToken']
+def GetCall(accessToken):
+#    accessToken=session['accessToken']
     endpointLink= "https://api.instagram.com/v1/users/self/media/recent?access_token={}".format(accessToken)
     
     #endpointLink1="https://api.instagram.com/v1/media/1998460770850257087_11639557926/comments?access_token=11639557926.7897a2c.127898c631cd41a3b4300e1e29d560d3"
@@ -38,8 +38,12 @@ def GetCall():
     
         if(int(comments[i][4]) > getRecentDate()[0]):
             InsertTable(comments[i])
-            print('Inserted')
+            logfile=open('Log.txt','a')
+            logfile.write('Inserted')
+            logfile.close()
         else:
-            print('already present')
+            logfile=open('Log.txt','a')
+            logfile.write('already present')
+            logfile.close()
     
         
