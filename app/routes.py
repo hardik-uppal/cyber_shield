@@ -84,7 +84,7 @@ def index():
         date_graph.append(dt_graph[i][1])
         count_explicit_graph.append(dt_graph[i][0])
         
-    
+    main_user = session.get('main_user', None)
     return render_template('index.html',users=users_chart1,commentTable=commentTable,length_comment_table=length_comment_table ,comment_count=comment_count_chart1,categories=nlcLabel,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])
 
 @app.route('/accessToken', methods=['GET','POST'])
@@ -99,7 +99,8 @@ def ExtractToken():
                 logfile=open('Log.txt','a')
                 logfile.write('waiting for access token')
                 logfile.close()
-            GetCall(accessToken)
+            main_user=GetCall(accessToken)
+            session["main_user"]=main_user
             scheduler = BackgroundScheduler()
             scheduler.add_job(lambda: GetCall(accessToken), trigger="interval", seconds=30)
             scheduler.start()

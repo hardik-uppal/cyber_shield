@@ -2,7 +2,7 @@ import requests as rq
 from TableScript import InsertTable,getRecentDate,checkComment
 from apiTest import apiNLCTest 
 from apiTest import apiToneTest
-from flask import session
+#from flask import session
 import os
 
 
@@ -29,6 +29,7 @@ def GetCall(accessToken):
     
     r = rq.get(endpointLink)
     r = r.json()
+    main_user = r["data"][0]["user"]["full_name"]
 #    print(str(r))
     logfile=open('Log.txt','a')
     logfile.write('json present')
@@ -87,5 +88,5 @@ def GetCall(accessToken):
                 logfile=open('Log.txt','a')
                 logfile.write('already present\n')
                 logfile.close()
-    
+    return main_user
         
