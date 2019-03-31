@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d712138f-530d-4bad-ab64-102cc48f96a6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/accessToken.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/accessToken.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Log.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -175,12 +173,12 @@
       <workItem from="1553571257151" duration="1649000" />
       <workItem from="1553592254376" duration="6796000" />
       <workItem from="1553983722437" duration="121000" />
-      <workItem from="1554026275547" duration="1465000" />
+      <workItem from="1554026275547" duration="1676000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26663000" />
+    <option name="totallyTimeSpent" value="26874000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />

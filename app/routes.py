@@ -148,8 +148,16 @@ def Analyze():
 
 @app.route('/contactUs')
 def contactUs():
-    return render_template('contactUs.html')
+    f = open("accessToken.txt", "r")
+    tempList=f.readline().split(',')
+#    accessToken=tempList[0]
+    main_user=tempList[1]
+    return render_template('contactUs.html',main_user=main_user)
 
 @app.route('/faq')
 def faq():
-    return render_template('faq.html')
+    f = open("accessToken.txt", "r")
+    tempList=f.readline().split(',')
+#    accessToken=tempList[0]
+    main_user=tempList[1]
+    return render_template('faq.html',main_user=main_user)
