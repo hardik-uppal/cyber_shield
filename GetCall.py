@@ -7,24 +7,25 @@ import os
 
 
 def GetCall(accessToken):
-    filePath = 'log.txt';
- 
-    # As file at filePath is deleted now, so we should check if file exists or not not before deleting them
-    if os.path.exists(filePath):
-        os.remove(filePath)
-    else:
-        
-        logfile=open('Log.txt','a')
-        logfile.write('Can not delete the file as it does not exists\n')
-        logfile.close()
-#        print("Can not delete the file as it doesn't exists")
+    filePath="Log.txt"
 #    accessToken='11639557926.5d4680b.faec56455bd04f7ab2389f26c17cbb01'
     accessToken=accessToken.rstrip(',')
 #    logfile=open('Log.txt','a')
 #    logfile.write('access token in get call{}\n'.format(accessToken))
 #    logfile.close()
     endpointLink= "https://api.instagram.com/v1/users/self/media/recent?access_token={}".format(accessToken)
+    if os.path.exists(filePath):
+        os.remove(filePath)
+        logfile=open('Log.txt','a')
+        logfile.write('previous log file deleted')
+        logfile.close()
+    else:
+        
+        logfile=open('Log.txt','a')
+        logfile.write('Can not delete the file as it does not exists\n')
+        logfile.close()
     
+
     #endpointLink1="https://api.instagram.com/v1/media/1998460770850257087_11639557926/comments?access_token=11639557926.7897a2c.127898c631cd41a3b4300e1e29d560d3"
     
     r = rq.get(endpointLink)
@@ -66,9 +67,11 @@ def GetCall(accessToken):
         #        comments_temp.append(comments_data["data"][j])
         #        print(comments_data["data"][j],"___________")
         #        print(comments_data["data"][j]["text"],apiToneTest(comments_data["data"][j]["text"])[1])
-                media_id,comments_id, username, comment_text, created_time, NlcLabel, ToneLabel = media_id_list[i],comments_data["data"][j]["id"],comments_data["data"][j]["from"]["username"],comments_data["data"][j]["text"],comments_data["data"][j]["created_time"],apiNLCTest(comments_data["data"][j]["text"])[0],apiToneTest(comments_data["data"][j]["text"])[1]
+                
+                media_id,comments_id, username, comment_text, created_time, NlcLabel, ToneLabel = media_id_list[i],comments_data["data"][j]["id"],comments_data["data"][j]["from"]["username"],comments_data["data"][j]["text"],comments_data["data"][j]["created_time"],apiNLCTest(comments_data["data"][j]["text"])[0][0],apiToneTest(comments_data["data"][j]["text"])[1]
         ##        print(media_id,comments_id, username, comment_text, created_time)
                 comments.append([media_id,comments_id, username, comment_text, created_time, NlcLabel, ToneLabel])
+        
         logfile=open('Log.txt','a')
         logfile.write('Comment list inserted')
         logfile.close()

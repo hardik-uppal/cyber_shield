@@ -165,7 +165,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Shubham Barnwal</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{main_user}}</span>
                 <img class="img-profile rounded-circle" src="../static/image/user.png">
               </a>
               <!-- Dropdown - User Information -->
@@ -553,11 +553,12 @@
                 <div class="card-body">
                   <select class="form-control" id="commentDDL" onchange="return getComment()">
                     <option selected="selected">Select</option>
-                    <option value="abc">abc</option>
-                    <option value="xyz">xyz</option>
+                    {% for o in option_list %}
+                    <option>{{ o }}          </option>
+                    {% endfor %}
                   </select>
                   <hr>
-                  <textarea class="form-control" rows="5" cols="40" id="comment_query"></textarea>
+                  <textarea class="form-control" rows="6" cols="40" id="comment_query"></textarea>
                 </div>
               </div>
               <button id="analyze_text" class="btn btn-block btn-primary">Analyze!</button>
@@ -573,7 +574,7 @@
               <!-- Illustrations -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary"></h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Result</h6>
                 </div>
                 <div class="card-body">
                   <div class="text-center">

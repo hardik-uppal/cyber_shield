@@ -14,12 +14,13 @@ def apiNLCTest(comment_text):
     natural_language_classifier = NaturalLanguageClassifierV1(iam_apikey=api_key)
     #classifier instance 
     response = natural_language_classifier.classify(workspace_ID, comment_text)
-    
+    result=[]
     response_new = response.result
-    
+#    return(response_new)
     if "classes" in response_new.keys():
         for predicted_class in response_new["classes"]:
-            return(predicted_class['class_name'],predicted_class['confidence'])
+            result.append([predicted_class['class_name'],predicted_class['confidence']])
+        return(result)
     
 def apiToneTest(comment_text):
 

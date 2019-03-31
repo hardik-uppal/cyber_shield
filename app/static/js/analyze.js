@@ -26,7 +26,7 @@ $("#analyze_text").on("click", function(){
                 // This loops through each of the class elements;
                 // index is the number 0..5 that corresponds to the given class
                 $("#results").append(
-                    "<a class='list-group-item' href='#'>"+ // Add a list item anchor tag to the list
+                    "<a class='list-group-item'>"+ // Add a list item anchor tag to the list
                     element['class_name']+      // Include the text of the class name
                     " ("+                       // In brackets include the confidence %
                     (element['confidence']*100).toFixed(2)+

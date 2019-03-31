@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from app import app
-from flask import render_template,session,redirect,url_for
+from flask import render_template,session,redirect,url_for,jsonify
 from flask import request
 from apscheduler.schedulers.background import BackgroundScheduler
 #import sqlite3
 from TableScript import ExecuteReader
 #import requests as rq
 from GetCall import GetCall
+import os
+from watson_developer_cloud import NaturalLanguageClassifierV1
 
 
 @app.route('/')
@@ -17,22 +19,11 @@ def login():
 
 @app.route('/index', methods=['GET','POST'])
 def index():
-#    GetCall()
-#    accessToken=ExtractToken()
-#    endpointLink= "https://api.instagram.com/v1/users/self/media/recent?access_token={}".format(accessToken)
-#    r = rq.get(endpointLink)
-#    r = r.json()
-#    user = r["data"][0]["user"]["full_name"]
-#          
-#    conn = sqlite3.connect('cyberShield.db')
-#    c = conn.cursor()
-#        
-#    c.execute('INSERT INTO user VALUES (?,?)', user,accessToken)
-#        
-#    conn.commit()
-#    conn.close()
-          
-    #chart1
+    accessToken=session.get("accessToken")
+#    if 'accessToken' in session:
+    logfile=open('routesLog.txt','a')
+    logfile.write("session value:{0}".format(accessToken))
+    logfile.close()  
     comment_count_chart1=[]
     users_chart1=[]
     dt_chart1=ExecuteReader("select count(*) as count,username from Comments Group by username order by count desc limit 5")
@@ -85,27 +76,55 @@ def index():
         count_explicit_graph.append(dt_graph[i][0])
         
     main_user = session.get('main_user', None)
-    return render_template('index.html',users=users_chart1,commentTable=commentTable,length_comment_table=length_comment_table ,comment_count=comment_count_chart1,categories=nlcLabel,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])
-
+    return render_template('index.html',main_user=main_user,option_list=comment_text,users=users_chart1,commentTable=commentTable,length_comment_table=length_comment_table ,comment_count=comment_count_chart1,categories=nlcLabel,cat_comment_count=comment_count_chart2,count_explicit_graph=count_explicit_graph,date_graph=date_graph,count_media_id=count_media_id[0][0],explicit_comments=explicit_comments[0][0])
+#    else:
+#        return redirect(url_for("login"))
 @app.route('/accessToken', methods=['GET','POST'])
 def ExtractToken():
     if request.method == "POST":
         if request.form['token'] is not None:
             accessToken=request.form['token']
-            logfile=open('Log.txt','a')
-            logfile.write(accessToken)
-            logfile.close()
+
+            filePath = 'routesLog.txt';
+         
+            # As file at filePath is deleted now, so we should check if file exists or not not before deleting them
+            if os.path.exists(filePath):
+                os.remove(filePath)
+                logfile=open('routesLog.txt','a')
+                logfile.write('previous log file deleted')
+                logfile.close()
+            else:
+                
+                logfile=open('routesLog.txt','a')
+                logfile.write('Can not delete the file as it does not exists\n')
+                logfile.close()
+            
             while accessToken is None:
-                logfile=open('Log.txt','a')
+                logfile=open('routesLog.txt','a')
                 logfile.write('waiting for access token')
                 logfile.close()
+            session['accessToken']=accessToken
             main_user=GetCall(accessToken)
-            session["main_user"]=main_user
+            session['main_user']=main_user
+            
             scheduler = BackgroundScheduler()
             scheduler.add_job(lambda: GetCall(accessToken), trigger="interval", seconds=30)
             scheduler.start()
 #            GetCall(session['accessToken'])
     return render_template('accessToken.html')
+
+@app.route('/analyze', methods=['GET', 'POST'])
+def Analyze():
+    api_key="LiI3o53WHaOU02ATKIwKhSQdirvntK1lZUPA6rhdEwCZ"
+    workspace_ID="6deb62x509-nlc-477"
+    natural_language_classifier = NaturalLanguageClassifierV1(iam_apikey=api_key)
+    comment_text = request.form['text']
+    classes = {}
+    result = ""
+    if comment_text != "":
+        classes = natural_language_classifier.classify(workspace_ID, comment_text)
+    result = classes.result
+    return jsonify(result)
 
 @app.route('/contactUs')
 def contactUs():
