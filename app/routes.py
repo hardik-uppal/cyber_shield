@@ -10,13 +10,12 @@ from TableScript import ExecuteReader
 from GetCall import GetCall
 import os
 from watson_developer_cloud import NaturalLanguageClassifierV1
-
+import requests as rq
 
 @app.route('/')
 @app.route('/login')
 def login():
-    if os.path.exists("accessToken.txt"):
-        os.remove("accessToken.txt")
+
     return render_template('login.html')
 
 @app.route('/index', methods=['GET','POST'])
@@ -103,21 +102,30 @@ def ExtractToken():
             filePath = 'accessToken.txt';
             if os.path.exists(filePath):
                 os.remove(filePath)
-            else:
-                
-                logfile=open('accessToken.txt','a')
-                logfile.write("{0}".format(accessToken))
-                logfile.close()
-         
+#            logfile=open('accessToken.txt','w+')
+#            logfile.write("{0}".format(accessToken))
+#            logfile.close()
+#            else:
+#                
+#                logfile=open('accessToken.txt','x')
+#                logfile.write("{0}".format(accessToken))
+#                logfile.close()
+#         
             # As file at filePath is deleted now, so we should check if file exists or not not before deleting them
 
 
 #            session['accessToken']=accessToken
-            main_user=GetCall(accessToken)
-#            session['main_user']=main_user
-            logfile=open('accessToken.txt','a')
-            logfile.write("{0}".format(main_user))
+            accessToken1=accessToken.rstrip(',')
+            endpointLink= "https://api.instagram.com/v1/users/self/media/recent?access_token={}".format(accessToken1)
+            r = rq.get(endpointLink)
+            r = r.json()
+            main_user = r["data"][0]["user"]["full_name"]
+            logfile=open('accessToken.txt','w+')
+            logfile.write("{0}{1}".format(accessToken,main_user))
             logfile.close()
+            GetCall(accessToken)
+#            session['main_user']=main_user
+
             
             scheduler = BackgroundScheduler()
             scheduler.add_job(lambda: GetCall(accessToken), trigger="interval", seconds=30)

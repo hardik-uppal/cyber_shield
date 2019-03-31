@@ -4,7 +4,7 @@
     <list default="true" id="d712138f-530d-4bad-ab64-102cc48f96a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/accessToken.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/accessToken.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,15 +17,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="425" column="37" lean-forward="true" selection-start-line="425" selection-start-column="37" selection-end-line="425" selection-end-column="37" />
+            <state relative-caret-position="-609">
+              <caret line="621" column="13" selection-start-line="621" selection-start-column="7" selection-end-line="621" selection-end-column="13" />
               <folding>
                 <element signature="n#style#0;n#i#0;n#span#3;n#div#1;n#div#1;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#span#4;n#div#1;n#div#1;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/accessToken.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -52,6 +61,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>main_us</find>
+      <find>logout</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -63,7 +73,6 @@
         <option value="$PROJECT_DIR$/app/static/js/demo/chart-pie-demo.js" />
         <option value="$PROJECT_DIR$/app/routes.py" />
         <option value="$PROJECT_DIR$/app/static/js/demo/chart-area-demo.js" />
-        <option value="$PROJECT_DIR$/app/templates/accessToken.html" />
         <option value="$PROJECT_DIR$/app/templates/package-lock.json" />
         <option value="$PROJECT_DIR$/app/static/js/analyze.js" />
         <option value="$PROJECT_DIR$/app/templates/login.html" />
@@ -71,6 +80,7 @@
         <option value="$PROJECT_DIR$/app/templates/contactUs.html" />
         <option value="$PROJECT_DIR$/app/templates/faq.html" />
         <option value="$PROJECT_DIR$/app/templates/index.html" />
+        <option value="$PROJECT_DIR$/app/templates/accessToken.html" />
       </list>
     </option>
   </component>
@@ -165,12 +175,12 @@
       <workItem from="1553571257151" duration="1649000" />
       <workItem from="1553592254376" duration="6796000" />
       <workItem from="1553983722437" duration="121000" />
-      <workItem from="1554026275547" duration="486000" />
+      <workItem from="1554026275547" duration="1465000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25684000" />
+    <option name="totallyTimeSpent" value="26663000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -234,13 +244,6 @@
     <entry file="file://$PROJECT_DIR$/app/templates/package-lock.json" />
     <entry file="file://$PROJECT_DIR$/app/templates/package.json" />
     <entry file="file://$PROJECT_DIR$/app/templates/gulpfile.js" />
-    <entry file="file://$PROJECT_DIR$/app/templates/accessToken.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/js/demo/chart-area-demo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -288,8 +291,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="425" column="37" lean-forward="true" selection-start-line="425" selection-start-column="37" selection-end-line="425" selection-end-column="37" />
+        <state relative-caret-position="-609">
+          <caret line="621" column="13" selection-start-line="621" selection-start-column="7" selection-end-line="621" selection-end-column="13" />
           <folding>
             <element signature="n#style#0;n#i#0;n#span#3;n#div#1;n#div#1;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#span#4;n#div#1;n#div#1;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -301,6 +304,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/accessToken.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
         </state>
       </provider>
     </entry>
