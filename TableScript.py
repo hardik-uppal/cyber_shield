@@ -3,12 +3,12 @@
 """
 Created on Wed Mar 13 14:33:56 2019
 
-@author: hardikuppal
 """
 
 import sqlite3
 
 
+# funtion to create a table in database
 def createTable():
     conn = sqlite3.connect('cyberShield.db')
     c = conn.cursor()
@@ -16,10 +16,7 @@ def createTable():
     c.execute('''DROP TABLE Comments''')
     c.execute('''CREATE TABLE Comments
                  (media_id NUMERIC, comments_id NUMERIC, username text, comment_text text, created_time NUMERIC, NlcLabel text, ToneLabel text)''')
-    
-    
-    
-    
+
     # Save (commit) the changes
     conn.commit()
     
@@ -27,7 +24,7 @@ def createTable():
     # Just be sure any changes have been committed or they will be lost.
     conn.close()
     
-    
+# function to insert data into database table
 def InsertTable(comment_data):
     conn = sqlite3.connect('cyberShield.db')
     c = conn.cursor()
@@ -36,14 +33,16 @@ def InsertTable(comment_data):
     
     conn.commit()
     conn.close()
-    
+
+# funtion to get current date/time
 def getRecentDate():
     conn = sqlite3.connect('cyberShield.db')
     c = conn.cursor()
     
     time=c.execute("SELECT created_time FROM Comments ORDER BY created_time DESC LIMIT 1").fetchone()
     return(time)
-    
+
+
 def checkComment(comments_id):
     conn = sqlite3.connect('cyberShield.db')
     c = conn.cursor()
@@ -51,7 +50,7 @@ def checkComment(comments_id):
     flag=c.execute("SELECT 1 FROM Comments where comments_id={}".format(comments_id)).fetchone()
     return(flag) 
     
-
+# function to read data from database
 def ExecuteReader(sql):
     conn = sqlite3.connect('cyberShield.db')
     c = conn.cursor()
